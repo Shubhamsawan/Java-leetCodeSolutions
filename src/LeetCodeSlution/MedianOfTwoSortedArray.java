@@ -4,36 +4,78 @@ import java.util.Arrays;
 
 public class MedianOfTwoSortedArray {
 
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int m = nums1.length, n = nums2.length;
-        System.out.println(" m " + m + " n " + n);
-        int[] merged = new int[m + n];
-        int i = 0, j = 0, k = 0;
-        System.out.println(" 1. merged " + Arrays.toString(merged));
+//    Given two sorted arrays nums1 and nums2 of size m and n respectively,
+//    return the median of the two sorted arrays.
+//    The overall run time complexity should be O(log (m+n))
 
-        // Merge both arrays
-        while (i < m && j < n) {
-            System.out.println(" nums1[i] "+ nums1[i]+" nums2[j] "+nums2[j]);
-            if (nums1[i] < nums2[j]) {
-                System.out.println("merged[k++] = nums1[i++] " + (merged[k++] = nums1[i++]));
-                System.out.println(" 2. merged " + Arrays.toString(merged));
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        //Brute force approach
+//        int m = nums1.length, n = nums2.length;
+//        System.out.println(" m " + m + " n " + n);
+//        int[] merged = new int[m + n];
+//        int i = 0, j = 0, k = 0;
+//        System.out.println(" 1. merged " + Arrays.toString(merged));
+//
+//        // Merge both arrays
+//        while (i < m && j < n) {
+//            System.out.println(" nums1[i] "+ nums1[i]+" nums2[j] "+nums2[j]);
+//            if (nums1[i] < nums2[j]) {
+//                System.out.println("merged[k++] = nums1[i++] " + (merged[k++] = nums1[i++]));
+//                System.out.println(" 2. merged " + Arrays.toString(merged));
+//            } else {
+//                System.out.println("merged[k++] = nums1[i++] " + (merged[k++] = nums2[j++]));
+//                System.out.println(" 3. merged " + Arrays.toString(merged));
+//            }
+//        }
+//
+//        // Add remaining elements
+//        while (i < m) merged[k++] = nums1[i++];
+//        while (j < n) merged[k++] = nums2[j++];
+//
+//        // Find median
+//        int total = m + n;
+//        if (total % 2 == 1) {
+//            return merged[total / 2];
+//        } else {
+//            return (merged[total / 2 - 1] + merged[total / 2]) / 2.0;
+//        }
+        if (nums1.length > nums2.length) {
+            return findMedianSortedArrays(nums2, nums1);
+        }
+
+        int m = nums1.length;
+        int n = nums2.length;
+        int totalLeft = (m + n + 1) / 2;
+
+        int low = 0, high = m;
+
+        while (low <= high) {
+            int partition1 = (low + high) / 2;
+            int partition2 = totalLeft - partition1;
+
+            int maxLeft1 = (partition1 == 0) ? Integer.MIN_VALUE : nums1[partition1 - 1];
+            int minRight1 = (partition1 == m) ? Integer.MAX_VALUE : nums1[partition1];
+
+            int maxLeft2 = (partition2 == 0) ? Integer.MIN_VALUE : nums2[partition2 - 1];
+            int minRight2 = (partition2 == n) ? Integer.MAX_VALUE : nums2[partition2];
+
+            if (maxLeft1 <= minRight2 && maxLeft2 <= minRight1) {
+                // Correct partition found
+                if ((m + n) % 2 == 0) {
+                    return (Math.max(maxLeft1, maxLeft2) + Math.min(minRight1, minRight2)) / 2.0;
+                } else {
+                    return Math.max(maxLeft1, maxLeft2);
+                }
+            } else if (maxLeft1 > minRight2) {
+                // Move left
+                high = partition1 - 1;
             } else {
-                System.out.println("merged[k++] = nums1[i++] " + (merged[k++] = nums2[j++]));
-                System.out.println(" 3. merged " + Arrays.toString(merged));
+                // Move right
+                low = partition1 + 1;
             }
         }
 
-        // Add remaining elements
-        while (i < m) merged[k++] = nums1[i++];
-        while (j < n) merged[k++] = nums2[j++];
-
-        // Find median
-        int total = m + n;
-        if (total % 2 == 1) {
-            return merged[total / 2];
-        } else {
-            return (merged[total / 2 - 1] + merged[total / 2]) / 2.0;
-        }
+        throw new IllegalArgumentException("Input arrays are not sorted properly.");
     }
 
     public static void main(String[] args) {
