@@ -19,21 +19,26 @@ public class BinarySearchExample {
     public static int binarySearch(int[] arr, int key) {
         System.out.println(arr.length);
         int low = 0, high = arr.length - 1;
-        System.out.println("low " + low + " high " + high);
-        System.out.println("low <= high " + (low <= high));
+        System.out.println("1.1 low " + low + " high " + high);
+        System.out.println("2.2 low <= high " + (low <= high));
 
         while (low <= high) {
-            System.out.println("2. low " + low + " high " + high);
+            System.out.println("3.3 low " + low + " high " + high);
             int mid = (low + high) / 2;
-            System.out.println("mid " + mid);
-            System.out.println("arr[mid] " + arr[mid]);
+            System.out.println("4.4 mid " + mid);
+            System.out.println("5.5 arr[mid] " + arr[mid]);
 
-            if (arr[mid] == key)
+            if (arr[mid] == key) {
+                System.out.println("6.6 mid " + mid);
+
                 return mid;  // found
-            else if (arr[mid] < key)
+            }else if (arr[mid] < key) {
                 low = mid + 1;
-            else
+                System.out.println("7.7 low " + low);
+            }else {
                 high = mid - 1;
+                System.out.println("8.8 high " + high);
+            }
         }
         System.out.println("low " + low);
         System.out.println("high " + high);
@@ -49,6 +54,6 @@ public class BinarySearchExample {
         if (index != -1)
             System.out.println("Element found at index: " + index);
         else
-            System.out.println("Element not found!");
+            System.out.println("Element not found!"+index);
     }
 }
