@@ -27,21 +27,20 @@ public class DuplicateElementArray {
 
     public int[] FindDuplicatesWithSpace(int[] arr) {
         HashSet<Integer> set = new HashSet<>();       // stores unique elements
-        ArrayList<Integer> duplicates = new ArrayList<>(); // stores duplicates
 
 
         for (int num : arr) {
             if (!set.add(num)) {
-                duplicates.add(num);
-                System.out.println("Duplicate: " + num);
+//                duplicates.add(num);
+                System.out.println(" Duplicate: " + num);
             }
         }
-        int[] result = new int[duplicates.size()];
-        for (int i = 0; i < duplicates.size(); i++) {
-            result[i] = duplicates.get(i);
-        }
+//        int[] result = new int[duplicates.size()];
+//        for (int i = 0; i < duplicates.size(); i++) {
+//            result[i] = duplicates.get(i);
+//        }
 
-        return result;
+        return arr;
     }
 
     public static void main(String[] args) {
