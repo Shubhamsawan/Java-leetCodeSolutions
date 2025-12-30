@@ -8,23 +8,17 @@ public class SecondLargestInArray {
 
         int largest = Integer.MIN_VALUE;
         int secondLargest = Integer.MIN_VALUE;
-        System.out.println("1.1 largest " + largest + " secondLargest " + secondLargest);
         for (int num : arr) {
-            System.out.println("2.2 --->  num " + num + " largest " + largest + " secondLargest " + secondLargest);
-            System.out.println("3.3-->num > largest " + (num > largest) + " num>secondLargest " + (num > secondLargest) + "<------------");
+
 
             if (num > largest) {
                 secondLargest = largest;
                 largest = num;
-                System.out.println("4.4 largest " + largest + " secondLargest " + secondLargest);
 
             } else if (num > secondLargest && num != largest) {
                 secondLargest = num;
-                System.out.println("5.5 secondLargest " + secondLargest);
             }
         }
-        System.out.println("6.6 Second Largest: " + secondLargest);
-
     }
 
     public void secondLargestWithSpace(int[] arr) {

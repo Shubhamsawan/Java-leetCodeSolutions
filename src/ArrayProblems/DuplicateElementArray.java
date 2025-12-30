@@ -46,9 +46,9 @@ public class DuplicateElementArray {
     public static void main(String[] args) {
         DuplicateElementArray duplicateElementArrayObj = new DuplicateElementArray();
 
-        int[] reverseArray = {1, 2, 3, 1, 3, 6, 6};
-        int[] duplicateElementWithoutSpace = duplicateElementArrayObj.duplicateElementWithoutSpace(reverseArray);
-        System.out.println(" duplicateElementWithoutSpace " + Arrays.toString(duplicateElementWithoutSpace));
+//        int[] reverseArray = {1, 2, 3, 1, 3, 6, 6};
+//        int[] duplicateElementWithoutSpace = duplicateElementArrayObj.duplicateElementWithoutSpace(reverseArray);
+//        System.out.println(" duplicateElementWithoutSpace " + Arrays.toString(duplicateElementWithoutSpace));
 
         int[] reverseArrays = {1, 2, 3, 1, 3, 6, 6};
         int[] duplicateElementWithSpace = duplicateElementArrayObj.FindDuplicatesWithSpace(reverseArrays);
